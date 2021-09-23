@@ -1,0 +1,26 @@
+<div class="stepper-page__body-inner">
+    <div class="stepper-page__title">
+      <h2>Form Confirmation</h2>
+    </div>
+    <div class="stepper-page__content--split container">
+        <div class="stepper-page__content-second">
+            <div class="width--full pr--xxs--sm pt--m pt--n--sm">
+                <div *ngIf="contactSchedulerModel.isSuccess()"
+                    class="display-flex align-items-center align-items-start--sm flex-direction-column text-align--center text-align--left--sm">
+                    <div class="text-flow text-flow--body mb--m" [innerHTML]="contactSchedulerModel.getSuccessMessage()"></div>
+                </div>
+                <div *ngIf="contactSchedulerModel.isFailed()"
+                     class="display-flex align-items-center align-items-start--sm flex-direction-column text-align--center text-align--left--sm">
+                  <div class="text-flow text-flow--body mb--m" [innerHTML]="contactSchedulerModel.getFailureMessage()"></div>
+                </div>
+
+                <div class="display-flex--sm justify-content-end--sm flex-direction-row-reverse--sm mt--xxl mt--l--sm">
+                    <button
+                        class="button button button--primary mb--m button__icon--position-left"   (click)="goToPreviousStep()">
+                        <span [innerHTML]="'Back'"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

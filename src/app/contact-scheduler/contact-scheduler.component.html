@@ -1,0 +1,12 @@
+<ng-container>
+    <ng-container>
+        <div class="stepper-page">
+            <div class="stepper-page__body container">
+                <app-step-container></app-step-container>
+            </div>
+            <div *ngIf="!(isCurrentStepFinal | async)">
+                <app-step-navigation-bar [buttonTextOverride]="'Submit'" [showStepCounter]="false" [showStepProgressBar]="false" [dynamicShadow]="false" [styling]="'buttons'"></app-step-navigation-bar>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

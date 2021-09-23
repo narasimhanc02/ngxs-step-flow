@@ -1,0 +1,55 @@
+<div [class.disabled]="isLoading" [class.sticky-footer--flow__dynamic-shadow]="dynamicShadow"
+     class="sticky-footer sticky-footer--flow">
+    <div class="sticky-footer--progress__container">
+        <!-- left arrow and back text-->
+        <div class="back-section">
+            <ng-template [ngIf]="styling === 'default'">
+                <a (click)="goToPreviousStep()"
+                   [class.disabled]="isLoading"
+                   [class.visibility-hide]="(!hasPreviousStep || previousStepDisabled) && !isCurrentStepAlternativeFirstStep()"
+                   class="link link--chevron link--chevron--before link--no-underline secondary">{{ 'Previous'  }}
+                </a>
+            </ng-template>
+            <ng-template [ngIf]="styling === 'buttons'">
+                <button *ngIf="hasPreviousStep" class="button button--secondary button__icon--position-left"
+                        (click)="goToPreviousStep()"
+                        [class.disabled]="isLoading"
+                        [class.hide-all]="(!hasPreviousStep || previousStepDisabled) && !isCurrentStepAlternativeFirstStep()">
+                    <i class="icon-chevron-left"></i>
+                    <span>{{ 'Previous' }}</span>
+                </button>
+            </ng-template>
+        </div>
+        <div *ngIf="this.showStepCounter"
+             class="progress-paging">
+            <p>{{currentStepNumber}}/{{ stepCount }}</p>
+        </div>
+        <div [class.next-section]="currentStepNumber !== 1 && !isConfirmiationStep">
+            <ng-template [ngIf]="styling === 'default'">
+                <a (click)="goToNextStep()"
+                   [class.disabled]="isLoading"
+                   [class.visibility-hide]="!hasNextStep"
+                   [ngClass]="(currentStepNumber === 1 && !isCurrentStepAlternativeFirstStep()) || isConfirmiationStep ? 'button button--primary' : 'link link--chevron'">
+                    {{ this.nextStepLabel  }}
+                </a>
+            </ng-template>
+            <ng-template [ngIf]="styling === 'buttons'">
+                <button class="button button--primary button__icon--position-right"
+                        (click)="goToNextStep()"
+                        [class.disabled]="isLoading"
+                        [class.visibility-hide]="!hasNextStep">
+                    <ng-container *ngIf="buttonTextOverride else defaultLabel">
+                        <span>{{ this.buttonTextOverride }}</span>
+                    </ng-container>
+                    <ng-template #defaultLabel><span>{{ this.nextStepLabel  }}</span></ng-template>
+                    <i class="icon-chevron-right"></i>
+                </button>
+            </ng-template>
+        </div>
+    </div>
+    <div *ngIf="this.showStepProgressBar"
+         class="progress-bar">
+        <div class="indicator-progress ready-{{ this.progressPercentage }}">
+        </div>
+    </div>
+</div>

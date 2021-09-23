@@ -1,0 +1,15 @@
+<div class="stepper-page__body-inner">
+    <div class="stepper-page__title">
+        <div class="text-flow text-flow--label stepper-page__title-label" [translate]="getFlowName()"></div>
+        <div class="text-flow text-flow--h1"
+             [innerHTML]="getHeader()"></div>
+
+    </div>
+    <div class="stepper-page__content">
+        <div [id]="getContainerId()" class="stepper-page__content">
+            <div class="section section-choices container">
+                <ng-template step-host></ng-template>
+            </div>
+        </div>
+    </div>
+</div>
